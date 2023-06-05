@@ -8,6 +8,10 @@ module Cookbook
       def all
         cookbooks.select(:name).order(:name)
       end
+
+      def find(id)
+        all.by_pk(id)
+      end
     end
   end
 end
