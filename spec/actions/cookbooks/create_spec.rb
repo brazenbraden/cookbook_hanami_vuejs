@@ -1,10 +1,32 @@
 # frozen_string_literal: true
 
 RSpec.describe Cookbook::Actions::Cookbooks::Create do
-  let(:params) { Hash[] }
+  let(:response) { subject.call(params) }
+  let(:cookbooks) { Hanami.app["persistence.rom"].relations[:cookbooks] }
 
-  it "works" do
-    response = subject.call(params)
-    expect(response).to be_successful
+  context "when given valid params" do
+    let(:params) do
+      {
+        cookbook: { name: "Baking" }
+      }
+    end
+
+    it "creates a book" do
+      expect(response).to be_created
+
+      expect(cookbooks.last[:name]).to eq("Baking")
+    end
+  end
+
+  context "when given bad params" do
+    let(:params) do
+      {
+        cookbook: { name: "" }
+      }
+    end
+
+    it "responds with 404" do
+      expect(response).to be_unprocessable
+    end
   end
 end
