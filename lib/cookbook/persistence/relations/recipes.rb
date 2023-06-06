@@ -3,10 +3,10 @@
 module Cookbook
   module Persistence
     module Relations
-      class Cookbooks < ROM::Relation[:sql]
-        schema(:cookbooks, infer: true) do
+      class Recipes < ROM::Relation[:sql]
+        schema(:recipes, infer: true) do
           associations do
-            has_many :recipes
+            belongs_to :cookbook
           end
         end
 
