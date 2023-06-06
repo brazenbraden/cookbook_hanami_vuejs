@@ -16,9 +16,7 @@ module Cookbook
         end
 
         def handle(request, response)
-          repo
-            .find(request.params[:id])
-            .update(request.params[:cookbook])
+          repo.update(request.params[:id], request.params[:cookbook])
 
           response.body = { state: "success" }.to_json
         end

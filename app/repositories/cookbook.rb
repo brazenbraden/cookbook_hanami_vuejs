@@ -5,12 +5,13 @@ module Cookbook
     class Cookbook < Cookbook::Repository[:cookbooks]
       commands :create, update: :by_pk, delete: :by_pk
 
-      def all
-        cookbooks.select(:name).order(:name)
-      end
-
-      def find(id)
-        all.by_pk(id)
+      def by_page(page:, per_page:)
+        cookbooks
+          .select(:name)
+          .order(:name)
+          .page(page || 1)
+          .per_page(per_page || 20)
+          .to_a
       end
     end
   end
