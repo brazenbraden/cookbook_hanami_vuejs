@@ -72,14 +72,14 @@ RSpec.describe Cookbook::Actions::Recipes::Index do
   context "when scoped to a cookbook" do
     let(:params) do
       {
-        cookbook_id: 2
+        cookbook_id: cookbook2_id
       }
     end
 
     it "fetches only the recipies in the corresponding cookbook" do
       cookbook_ids = body.map { |recipe| recipe["cookbook_id"] }.uniq
 
-      expect(cookbook_ids).to eq([2])
+      expect(cookbook_ids).to eq([cookbook2_id])
       expect(body.count).to eq(5)
     end
   end
