@@ -1,3 +1,4 @@
+# auto_register: false
 # frozen_string_literal: true
 
 module Cookbook
@@ -16,7 +17,9 @@ module Cookbook
         end
 
         def handle(request, response)
-          response.body = repo.update(request.params[:id], request.params[:cookbook]).attributes.to_json
+          response.body = repo.update(request.params[:id], request.params[:cookbook])
+
+          response.body = { state: "success" }.to_json
         end
       end
     end
