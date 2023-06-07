@@ -7,6 +7,10 @@ module Cookbook
   class Action < Hanami::Action
     handle_exception ROM::TupleCountMismatchError => :handle_not_found
 
+    before do |request, _|
+      halt 422, { errors: request.params.errors }.to_json unless request.params.valid?
+    end
+
     private
 
     def handle_not_found(_request, response, exception)

@@ -7,8 +7,6 @@ module Cookbook
       class Update < Cookbook::Action
         include Deps[repo: "repositories.cookbook"]
 
-        before { |request, _| halt 422 unless request.params.valid? }
-
         params do
           required(:id).value(:integer)
           required(:cookbook).hash do
@@ -18,7 +16,6 @@ module Cookbook
 
         def handle(request, response)
           response.body = repo.update(request.params[:id], request.params[:cookbook])
-
           response.body = { state: "success" }.to_json
         end
       end

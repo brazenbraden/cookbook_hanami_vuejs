@@ -29,4 +29,12 @@ RSpec.describe Cookbook::Actions::Cookbooks::Show do
       )
     end
   end
+
+  context "when invalid params" do
+    let(:params) { Hash[] }
+
+    it "responds with unprocessable" do
+      expect(response).to be_unprocessable
+    end
+  end
 end

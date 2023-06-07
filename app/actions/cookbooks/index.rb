@@ -13,8 +13,6 @@ module Cookbook
         end
 
         def handle(request, response)
-          halt 422, { errors: request.params.errors }.to_json unless request.params.valid?
-
           response.body = repo
             .by_page(
               page: request.params[:page],

@@ -16,8 +16,6 @@ module Cookbook
         end
 
         def handle(request, response)
-          halt 422 unless request.params.valid?
-
           response.body = repo.create(request.params[:ingredient])
           response.status = :created
         end

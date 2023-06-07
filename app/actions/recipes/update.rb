@@ -7,8 +7,6 @@ module Cookbook
       class Update < Cookbook::Action
         include Deps[repo: "repositories.recipe"]
 
-        before { |request, _| halt 422 unless request.params.valid? }
-
         params do
           required(:id).value(:integer)
           required(:recipe).hash do
