@@ -15,5 +15,10 @@ module Cookbook
       patch "/recipes/:id", to: "recipes.update"
       delete "/recipes/:id", to: "recipes.destroy"
     end
+
+    get "/ingredients", to: "ingredients.index"
+    post "/ingredients", to: "ingredients.create"
+    patch "/ingredients/:id", to: "ingredients.update"
+    delete "/ingredients/:id", to: "ingredients.destroy"
   end
 end
