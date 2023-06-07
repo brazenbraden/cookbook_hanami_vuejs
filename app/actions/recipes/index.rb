@@ -1,3 +1,4 @@
+# auto_register: false
 # frozen_string_literal: true
 
 module Cookbook
@@ -15,7 +16,7 @@ module Cookbook
         def handle(request, response)
           halt 422, { errors: request.params.errors }.to_json unless request.params.valid?
 
-          response.body = repo .by_cookbook(request.params)
+          response.body = repo.by_cookbook(request.params)
             .map(&:attributes).to_json
         end
       end

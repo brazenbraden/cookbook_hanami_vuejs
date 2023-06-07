@@ -6,7 +6,7 @@ RSpec.describe Cookbook::Actions::Cookbooks::Index do
   let(:body) { JSON.parse(response.body.first) }
 
   before do
-    10.times { |i| cookbooks.insert(name: "Cookbook #{i}") }
+    10.times { |i| cookbooks.insert(name: "Item #{i}") }
     response
   end
 
@@ -18,11 +18,11 @@ RSpec.describe Cookbook::Actions::Cookbooks::Index do
       }
     end
 
-    it "returns a list of cookbooks" do
+    it "returns a list of items" do
       expected_response = [
-        { "name" => "Cookbook 0" },
-        { "name" => "Cookbook 1" },
-        { "name" => "Cookbook 2" }
+        { "name" => "Item 0" },
+        { "name" => "Item 1" },
+        { "name" => "Item 2" }
       ]
 
       expect(body).to eq(expected_response)
