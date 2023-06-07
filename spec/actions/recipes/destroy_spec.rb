@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Cookbook::Actions::Recipes::Delete do
+RSpec.describe Cookbook::Actions::Recipes::Destroy do
   let(:cookbook) { Hanami.app["persistence.rom"].relations["cookbooks"] }
   let(:recipe) { Hanami.app["persistence.rom"].relations["recipes"] }
   let(:response) { subject.call(params) }

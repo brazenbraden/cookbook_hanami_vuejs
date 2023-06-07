@@ -3,7 +3,7 @@
 module Cookbook
   module Actions
     module Recipes
-      class Delete < Cookbook::Action
+      class Destroy < Cookbook::Action
         include Deps[repo: "repositories.recipe"]
 
         params do
