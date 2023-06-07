@@ -13,4 +13,12 @@ namespace :db do
     Hanami.app.prepare(:persistence)
     ROM::SQL::RakeSupport.env = Hanami.app["persistence.config"]
   end
+
+  task seed: :environment do
+    require_relative "db/seeds"
+
+    Hanami.app.prepare(:persistence)
+    Rake::Task["db:reset"].invoke
+    Seeds.run!
+  end
 end
