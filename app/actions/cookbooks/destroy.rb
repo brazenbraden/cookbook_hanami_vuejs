@@ -1,3 +1,4 @@
+# auto_register: false
 # frozen_string_literal: true
 
 module Cookbook
@@ -11,7 +12,7 @@ module Cookbook
         end
 
         def handle(request, response)
-          response.body = repo.delete(request.params[:id])
+          response.status = 404 if repo.delete(request.params[:id]).nil?
         end
       end
     end
