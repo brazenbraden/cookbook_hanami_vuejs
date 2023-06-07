@@ -2,18 +2,16 @@
 
 module Cookbook
   module Actions
-    module Cookbooks
+    module Recipes
       class Show < Cookbook::Action
-        include Deps[repo: "repositories.cookbook"]
+        include Deps[repo: "repositories.recipe"]
 
         params do
           required(:id).value(:integer)
         end
 
         def handle(request, response)
-          response.body = repo.cookbooks.by_pk(
-            request.params[:id]
-          ).one!.attributes.to_json
+          response.body = repo.recipes.by_pk(request.params[:id]).one!.attributes.to_json
         end
       end
     end
