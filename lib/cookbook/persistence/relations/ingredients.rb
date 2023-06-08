@@ -6,7 +6,7 @@ module Cookbook
       class Ingredients < ROM::Relation[:sql]
         schema(:ingredients, infer: true) do
           associations do
-            belongs_to :ingredient_type
+            belongs_to :ingredient_type, foreign_key: :type_id
             has_many :recipes, through: :recipe_ingredients
           end
         end

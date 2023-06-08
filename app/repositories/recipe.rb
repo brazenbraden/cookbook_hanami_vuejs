@@ -15,6 +15,13 @@ module Cookbook
           .per_page(params[:per_page] || 20)
           .to_a
       end
+
+      def full_recipe_for(id)
+        recipes
+          .by_pk(id)
+          .combine([:cookbooks, :steps, { ingredients: :ingredient_types }])
+          .to_a
+      end
     end
   end
 end

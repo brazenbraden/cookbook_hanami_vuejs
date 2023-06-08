@@ -12,7 +12,7 @@ module Cookbook
         end
 
         def handle(request, response)
-          response.body = repo.recipes.by_pk(request.params[:id]).one!.attributes.to_json
+          response.body = repo.full_recipe_for(request.params[:id]).to_json
         end
       end
     end

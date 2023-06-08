@@ -8,6 +8,7 @@ module Cookbook
           associations do
             belongs_to :cookbook
             has_many :ingredients, through: :recipe_ingredients
+            has_many :steps
           end
         end
 
