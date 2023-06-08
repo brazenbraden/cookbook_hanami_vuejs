@@ -9,7 +9,7 @@ module Cookbook
         def first_or_create(attributes)
           where(attributes).one!
         rescue ROM::TupleCountMismatchError
-          by_pk(insert(attributes)).first.to_a
+          by_pk(insert(attributes)).first
         end
       end
     end
