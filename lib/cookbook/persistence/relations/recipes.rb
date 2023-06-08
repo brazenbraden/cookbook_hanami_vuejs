@@ -7,6 +7,7 @@ module Cookbook
         schema(:recipes, infer: true) do
           associations do
             belongs_to :cookbook
+            has_many :ingredients, through: :recipe_ingredients
           end
         end
 

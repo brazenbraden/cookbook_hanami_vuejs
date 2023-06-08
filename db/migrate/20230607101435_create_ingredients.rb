@@ -5,9 +5,10 @@ ROM::SQL.migration do
     create_table :ingredients do
       primary_key :id
       foreign_key :type_id
-      column :name, :text, null: false
-      column :calories, Integer
-      column :price, Float
+      column :name, :text, null: false, unique: true
+      column :calories, Integer, default: 0
+      column :price, Float, default: 0.0
+      column :available, Float, default: 0.0
     end
   end
 end
