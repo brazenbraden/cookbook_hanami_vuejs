@@ -14,8 +14,7 @@ module Cookbook
         end
 
         def handle(request, response)
-          response.body = repo.by_cookbook(request.params)
-            .map(&:attributes).to_json
+          response.body = repo.by_cookbook(request.params).to_h.to_json
         end
       end
     end

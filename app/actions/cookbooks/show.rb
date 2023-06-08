@@ -14,7 +14,7 @@ module Cookbook
         def handle(request, response)
           response.body = repo.cookbooks.by_pk(
             request.params[:id]
-          ).one!.attributes.to_json
+          ).one!.to_h.to_json
         end
       end
     end

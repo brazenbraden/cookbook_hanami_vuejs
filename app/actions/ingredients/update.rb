@@ -17,7 +17,7 @@ module Cookbook
         end
 
         def handle(request, response)
-          response.body = repo.update(request.params[:id], request.params[:ingredient]).attributes.to_json
+          response.body = repo.update(request.params[:id], request.params[:ingredient]).to_h.to_json
         end
       end
     end

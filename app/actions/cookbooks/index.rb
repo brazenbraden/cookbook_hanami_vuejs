@@ -17,7 +17,7 @@ module Cookbook
             .by_page(
               page: request.params[:page],
               per_page: request.params[:per_page]
-            ).to_a.map(&:attributes).to_json
+            ).to_a.to_h.to_json
         end
       end
     end

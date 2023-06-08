@@ -21,6 +21,7 @@ module Cookbook
           .by_pk(id)
           .combine([:cookbooks, :steps, { ingredients: :ingredient_types }])
           .to_a
+          .first
       end
     end
   end
