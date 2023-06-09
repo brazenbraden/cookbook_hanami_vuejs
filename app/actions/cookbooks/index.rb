@@ -1,4 +1,3 @@
-# auto_register: false
 # frozen_string_literal: true
 
 module Cookbook
@@ -17,7 +16,7 @@ module Cookbook
             .by_page(
               page: request.params[:page],
               per_page: request.params[:per_page]
-            ).to_a.to_h.to_json
+            ).map(&:to_h).to_json
         end
       end
     end
