@@ -1,15 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <h1>My Cookbooks!</h1>
+  <CookbookList :cookbooks="cookbooks" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import CookbookList from "./components/CookbookList.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    CookbookList,
+  },
+  data() {
+    return {
+      cookbooks: [],
+    };
+  },
+  async created() {
+    this.cookbooks = await this.getCookbooks();
+  },
+  methods: {
+    async getCookbooks() {
+      const res = await fetch("http://localhost:2300/");
+      const data = await res.json();
+      return data;
+    },
   },
 };
 </script>
@@ -21,6 +36,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 700px;
+  margin: 20px auto;
 }
 </style>

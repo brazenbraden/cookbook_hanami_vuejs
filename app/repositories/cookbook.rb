@@ -7,7 +7,7 @@ module Cookbook
 
       def by_page(page:, per_page:)
         cookbooks
-          .select(:name)
+          .select(:id, :name)
           .order(:name)
           .page(page || 1)
           .per_page(per_page || 20)
