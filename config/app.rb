@@ -15,6 +15,10 @@ module Cookbook
       end
     end
 
+    environment(:development) do
+      config.logger.options[:colorize] = true
+    end
+
     environment(:production) do
       config.actions.cookies = {
         secure: true,

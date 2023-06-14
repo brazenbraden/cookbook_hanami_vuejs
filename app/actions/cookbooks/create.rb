@@ -9,7 +9,7 @@ module Cookbook
         params Params::Create
 
         def handle(request, response)
-          response.body = repo.create(request.params[:cookbook]).to_json
+          response.body = repo.create(request.params[:cookbook]).to_h.to_json
           response.status = :created
         end
       end

@@ -1,15 +1,18 @@
 <template>
   <h1>My Cookbooks!</h1>
+  <AddCookbookForm @add-cookbook="addCookbook" />
   <CookbookList :cookbooks="cookbooks" />
 </template>
 
 <script>
 import CookbookList from "./components/CookbookList.vue";
+import AddCookbookForm from "./components/AddCookbookForm.vue";
 
 export default {
   name: "App",
   components: {
     CookbookList,
+    AddCookbookForm,
   },
   data() {
     return {
@@ -21,9 +24,22 @@ export default {
   },
   methods: {
     async getCookbooks() {
-      const res = await fetch("http://localhost:2300/");
+      const res = await fetch("api/");
       const data = await res.json();
       return data;
+    },
+    async addCookbook(data) {
+      const req = await fetch("api/cookbooks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const res = await req.json();
+
+      this.cookbooks = [...this.cookbooks, res];
     },
   },
 };
