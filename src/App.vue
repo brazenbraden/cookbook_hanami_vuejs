@@ -1,60 +1,10 @@
 <template>
-  <h1>My Cookbooks!</h1>
-  <AddCookbookForm @add-cookbook="addCookbook" />
-  <CookbookList :cookbooks="cookbooks" @delete-cookbook="deleteCookbook" />
+  <nav>
+    <router-link to="/">Cookbooks</router-link> |
+    <router-link to="/about">About</router-link>
+  </nav>
+  <router-view />
 </template>
-
-<script>
-import CookbookList from "./components/CookbookList.vue";
-import AddCookbookForm from "./components/AddCookbookForm.vue";
-
-export default {
-  name: "App",
-  components: {
-    CookbookList,
-    AddCookbookForm,
-  },
-  data() {
-    return {
-      cookbooks: [],
-    };
-  },
-  async created() {
-    this.cookbooks = await this.getCookbooks();
-  },
-  methods: {
-    async getCookbooks() {
-      const res = await fetch("api/");
-      const data = await res.json();
-      return data;
-    },
-    async addCookbook(data) {
-      const req = await fetch("api/cookbooks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const res = await req.json();
-
-      this.cookbooks = [...this.cookbooks, res];
-    },
-    async deleteCookbook(id) {
-      const req = await fetch(`api/cookbooks/${id}`, {
-        method: "DELETE",
-      });
-
-      if (req.status == 200) {
-        this.cookbooks = this.cookbooks.filter(
-          (cookbook) => cookbook.id !== id
-        );
-      }
-    },
-  },
-};
-</script>
 
 <style>
 #app {
@@ -65,5 +15,28 @@ export default {
   color: #2c3e50;
   width: 700px;
   margin: 20px auto;
+}
+</style>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
