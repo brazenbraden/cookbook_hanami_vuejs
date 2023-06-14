@@ -1,6 +1,6 @@
 <template>
   <div :key="cookbook.id" v-for="cookbook in cookbooks">
-    <CookbookItem :cookbook="cookbook" />
+    <CookbookItem :cookbook="cookbook" @delete-cookbook="deleteCookbook" />
   </div>
 </template>
 
@@ -14,6 +14,11 @@ export default {
   },
   components: {
     CookbookItem,
+  },
+  methods: {
+    deleteCookbook(id) {
+      this.$emit("delete-cookbook", id);
+    },
   },
 };
 </script>

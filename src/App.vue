@@ -1,7 +1,7 @@
 <template>
   <h1>My Cookbooks!</h1>
   <AddCookbookForm @add-cookbook="addCookbook" />
-  <CookbookList :cookbooks="cookbooks" />
+  <CookbookList :cookbooks="cookbooks" @delete-cookbook="deleteCookbook" />
 </template>
 
 <script>
@@ -40,6 +40,17 @@ export default {
       const res = await req.json();
 
       this.cookbooks = [...this.cookbooks, res];
+    },
+    async deleteCookbook(id) {
+      const req = await fetch(`api/cookbooks/${id}`, {
+        method: "DELETE",
+      });
+
+      if (req.status == 200) {
+        this.cookbooks = this.cookbooks.filter(
+          (cookbook) => cookbook.id !== id
+        );
+      }
     },
   },
 };
