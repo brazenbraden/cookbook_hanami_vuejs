@@ -18,7 +18,7 @@ module Cookbook
             .order(:name)
             .page(request.params[:page] || 1)
             .per_page(request.params[:per_page] || 20)
-            .to_a.to_h.to_json
+            .to_a.map(&:to_h).to_json
         end
       end
     end

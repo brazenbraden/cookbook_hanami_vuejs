@@ -37,4 +37,5 @@ end
 group :test do
   gem "database_cleaner-sequel"
   gem "rack-test"
+  gem "rom-factory"
 end

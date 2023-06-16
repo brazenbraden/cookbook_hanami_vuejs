@@ -6,7 +6,7 @@ module Cookbook
       class Cookbooks < ROM::Relation[:sql]
         schema(:cookbooks, infer: true) do
           associations do
-            has_many :recipes
+            # has_many :recipes
           end
         end
 

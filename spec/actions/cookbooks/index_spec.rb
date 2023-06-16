@@ -6,26 +6,22 @@ RSpec.describe Cookbook::Actions::Cookbooks::Index do
   let(:body) { JSON.parse(response.body.first) }
 
   before do
-    10.times { |i| cookbooks.insert(name: "Item #{i}") }
+    10.times { |i| Factory[:cookbook, name: "Cookbook_#{i}"] }
     response
   end
 
   context "with pagination" do
     let(:params) do
       {
-        page: 1,
+        page: 2,
         per_page: 3
       }
     end
 
     it "returns a list of items" do
-      expected_response = [
-        { "name" => "Item 0" },
-        { "name" => "Item 1" },
-        { "name" => "Item 2" }
-      ]
+      expected_names = %w[Cookbook_3 Cookbook_4 Cookbook_5]
 
-      expect(body).to eq(expected_response)
+      expect(body.map { |c| c["name"] }).to eq(expected_names)
     end
   end
 

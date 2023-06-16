@@ -58,3 +58,34 @@ export default {
   },
 };
 </script>
+
+<style>
+form {
+  margin-top: 30px;
+  padding: 20px 0;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+.form-control {
+  margin: 10px;
+  display: inline-flex;
+}
+label {
+  text-align: left;
+  margin-right: 20px;
+  display: inline-block;
+  width: 100%;
+  padding: 5px;
+}
+input[type="text"] {
+  padding: 5px;
+  width: 100%;
+}
+input[type="submit"] {
+  display: block;
+  width: -webkit-fill-available;
+  margin: 0 10px;
+  padding: 10px;
+}
+</style>

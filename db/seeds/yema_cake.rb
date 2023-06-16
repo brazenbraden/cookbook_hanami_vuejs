@@ -6,7 +6,7 @@ module Seeds
   class YemaCake
     def run
       cookbook_id = create_cookbook
-      recipe_id = create_recipe(cookbook_id)
+      recipe_id = create_recipe
       create_steps(recipe_id)
       create_ingredients(recipe_id)
     end
@@ -17,12 +17,11 @@ module Seeds
       @cookbooks.insert(name: "Baking")
     end
 
-    def create_recipe(cookbook_id)
+    def create_recipe
       @recipes.insert(
         name: "Yema cake",
         blurb: "Filipino cake yum yum",
-        duration: 2 * 60 * 60,
-        cookbook_id: cookbook_id
+        duration: 2 * 60 * 60
       )
     end
 

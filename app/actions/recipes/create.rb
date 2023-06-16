@@ -7,7 +7,6 @@ module Cookbook
         include Deps[repo: "repositories.recipe"]
 
         params do
-          required(:cookbook_id).value(:integer)
           required(:recipe).hash do
             required(:name).value(:string)
             required(:blurb).value(:string)

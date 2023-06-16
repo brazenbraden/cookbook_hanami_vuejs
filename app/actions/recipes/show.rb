@@ -11,7 +11,10 @@ module Cookbook
         end
 
         def handle(request, response)
-          response.body = repo.full_recipe_for(request.params[:id]).to_h.to_json
+          record = repo.full_recipe_for(request.params[:id])
+          raise ROM::TupleCountMismatchError if record.nil?
+
+          response.body = record.to_h.to_json
         end
       end
     end
