@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import CookbookList from "@/components/CookbookList.vue";
-import AddCookbookForm from "@/components/AddCookbookForm.vue";
+import CookbookList from "@/components/cookbook/CookbookList.vue";
+import AddCookbookForm from "@/components/cookbook/AddCookbookForm.vue";
 
 export default {
   name: "App",
@@ -25,8 +25,7 @@ export default {
   methods: {
     async getCookbooks() {
       const res = await fetch("api/");
-      const data = await res.json();
-      return data;
+      return await res.json();
     },
     async addCookbook(data) {
       const req = await fetch("api/cookbooks", {

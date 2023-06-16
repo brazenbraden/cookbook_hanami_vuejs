@@ -14,7 +14,7 @@ module Cookbook
         def handle(request, response)
           response.body = repo
             .ingredients
-            .select(:name)
+            .select(:id, :name)
             .order(:name)
             .page(request.params[:page] || 1)
             .per_page(request.params[:per_page] || 20)
